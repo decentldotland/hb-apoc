@@ -1,0 +1,62 @@
+[
+  {
+    "name": "ar_wallet:load_key/1",
+    "module": "ar_wallet",
+    "moduleId": "ar_wallet",
+    "functionName": "load_key",
+    "arity": 1,
+    "description": "",
+    "params": [
+      {
+        "name": "JWK",
+        "type": "map or binary",
+        "description": "JWK key data"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, KeyPair}",
+        "description": "Loaded key pair"
+      }
+    ],
+    "relatedFunctions": [
+      "`sign/2`",
+      "`to_address/1`"
+    ],
+    "usageNotes": "- Converts JWK format to internal key representation",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/ar_wallet.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "ar_wallet:sign/2",
+    "module": "ar_wallet",
+    "moduleId": "ar_wallet",
+    "functionName": "sign",
+    "arity": 2,
+    "description": "",
+    "params": [
+      {
+        "name": "Data",
+        "type": "binary",
+        "description": "Data to sign"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Signature}",
+        "description": "Generated signature"
+      }
+    ],
+    "relatedFunctions": [
+      "`verify/3`",
+      "`load_key/1`"
+    ],
+    "usageNotes": "- Core cryptographic function for Arweave integration",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/ar_wallet.erl",
+    "lineNumber": 1
+  }
+]

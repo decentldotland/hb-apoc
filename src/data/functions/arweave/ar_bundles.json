@@ -1,0 +1,62 @@
+[
+  {
+    "name": "ar_bundles:create_bundle/2",
+    "module": "ar_bundles",
+    "moduleId": "ar_bundles",
+    "functionName": "create_bundle",
+    "arity": 2,
+    "description": "",
+    "params": [
+      {
+        "name": "Items",
+        "type": "list",
+        "description": "List of data items to bundle"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Bundle}",
+        "description": "Created ANS-104 bundle"
+      }
+    ],
+    "relatedFunctions": [
+      "`verify_bundle/2`",
+      "`unbundle/2`"
+    ],
+    "usageNotes": "- Implements the ANS-104 data bundling standard",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/ar_bundles.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "ar_bundles:verify_bundle/2",
+    "module": "ar_bundles",
+    "moduleId": "ar_bundles",
+    "functionName": "verify_bundle",
+    "arity": 2,
+    "description": "",
+    "params": [
+      {
+        "name": "Bundle",
+        "type": "binary",
+        "description": "ANS-104 bundle to verify"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, VerifiedBundle}",
+        "description": "Successfully verified bundle"
+      }
+    ],
+    "relatedFunctions": [
+      "`create_bundle/2`",
+      "`unbundle/2`"
+    ],
+    "usageNotes": "- Validates ANS-104 bundle format and integrity",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/ar_bundles.erl",
+    "lineNumber": 1
+  }
+]

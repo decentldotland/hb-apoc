@@ -1,0 +1,62 @@
+[
+  {
+    "name": "dev_stack:fold/4",
+    "module": "dev_stack",
+    "moduleId": "dev_stack",
+    "functionName": "fold",
+    "arity": 4,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "Initial message"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Result}",
+        "description": "Final result after processing through all devices"
+      }
+    ],
+    "relatedFunctions": [
+      "`map/4`",
+      "`handle_message/2`"
+    ],
+    "usageNotes": "- Implements the transformation pipeline pattern",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/dev_stack.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "dev_stack:handle_message/2",
+    "module": "dev_stack",
+    "moduleId": "dev_stack",
+    "functionName": "handle_message",
+    "arity": 2,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "Message to handle"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Response}",
+        "description": "Successfully handled message"
+      }
+    ],
+    "relatedFunctions": [
+      "`fold/4`",
+      "`map/4`"
+    ],
+    "usageNotes": "- Enables composition of multiple devices",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/dev_stack.erl",
+    "lineNumber": 1
+  }
+]

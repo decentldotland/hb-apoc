@@ -1,0 +1,16 @@
+{
+  "name": "Network Subsystem",
+  "description": "Functions for network communication, HTTP servers and clients, WebSocket connections, and peer-to-peer interactions.",
+  "modules": [
+    {
+      "id": "hb_http",
+      "name": "HTTP Protocol",
+      "count": 2
+    },
+    {
+      "id": "hb_client",
+      "name": "Client Interface",
+      "count": 2
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+[
+  {
+    "name": "hb_converge:get/3",
+    "module": "hb_converge",
+    "moduleId": "hb_converge",
+    "functionName": "get",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "The message to get a value from"
+      }
+    ],
+    "returns": [],
+    "relatedFunctions": [
+      "`set/4`",
+      "`update/4`",
+      "`merge/3`"
+    ],
+    "usageNotes": "- Fundamental operation for accessing message content",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_converge.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "hb_converge:register_device/3",
+    "module": "hb_converge",
+    "moduleId": "hb_converge",
+    "functionName": "register_device",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "DeviceId",
+        "type": "binary",
+        "description": "The device ID or pattern"
+      }
+    ],
+    "returns": [
+      {
+        "type": "ok",
+        "description": "Registration successful"
+      }
+    ],
+    "relatedFunctions": [
+      "`unregister_device/2`",
+      "`get_device_handler/2`"
+    ],
+    "usageNotes": "- Used to extend the system with new device handlers",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_converge.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "hb_converge:resolve/2",
+    "module": "hb_converge",
+    "moduleId": "hb_converge",
+    "functionName": "resolve",
+    "arity": 2,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "The message to resolve"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, ResolvedMessage}",
+        "description": "Successful resolution with resulting message"
+      }
+    ],
+    "relatedFunctions": [
+      "`resolve/3`",
+      "`initial_handlers/2`",
+      "`resolve_with_handlers/3`"
+    ],
+    "usageNotes": "- Acts as the primary entry point for message processing",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_converge.erl",
+    "lineNumber": 1
+  }
+]

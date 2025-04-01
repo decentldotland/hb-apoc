@@ -1,0 +1,62 @@
+[
+  {
+    "name": "dev_codec_httpsig:sign_message/3",
+    "module": "dev_codec_httpsig",
+    "moduleId": "dev_codec_httpsig",
+    "functionName": "sign_message",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "Message to sign"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, SignedMessage}",
+        "description": "Message with signature added"
+      }
+    ],
+    "relatedFunctions": [
+      "`verify_signature/3`",
+      "`create_signature/3`"
+    ],
+    "usageNotes": "- Implements HTTP Message Signatures standard",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/dev_codec_httpsig.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "dev_codec_httpsig:verify_signature/3",
+    "module": "dev_codec_httpsig",
+    "moduleId": "dev_codec_httpsig",
+    "functionName": "verify_signature",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "Message with signature to verify"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, VerifiedMessage}",
+        "description": "Successfully verified message"
+      }
+    ],
+    "relatedFunctions": [
+      "`sign_message/3`",
+      "`extract_signature/2`"
+    ],
+    "usageNotes": "- Validates message authenticity and integrity",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/dev_codec_httpsig.erl",
+    "lineNumber": 1
+  }
+]

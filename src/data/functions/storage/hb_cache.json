@@ -1,0 +1,63 @@
+[
+  {
+    "name": "hb_cache:get_with_attestations/2",
+    "module": "hb_cache",
+    "moduleId": "hb_cache",
+    "functionName": "get_with_attestations",
+    "arity": 2,
+    "description": "",
+    "params": [
+      {
+        "name": "MessageId",
+        "type": "binary",
+        "description": "ID of the message to retrieve"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, {Message, Attestations}}",
+        "description": "Successfully retrieved with attestations"
+      }
+    ],
+    "relatedFunctions": [
+      "`get/2`",
+      "`get_attestations/2`"
+    ],
+    "usageNotes": "- Used for retrieving complete message provenance",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_cache.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "hb_cache:put/3",
+    "module": "hb_cache",
+    "moduleId": "hb_cache",
+    "functionName": "put",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "MessageId",
+        "type": "binary",
+        "description": "ID of the message"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, MessageId}",
+        "description": "Successfully cached"
+      }
+    ],
+    "relatedFunctions": [
+      "`get/2`",
+      "`exists/2`",
+      "`delete/2`"
+    ],
+    "usageNotes": "- Primary function for caching processed messages",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_cache.erl",
+    "lineNumber": 1
+  }
+]

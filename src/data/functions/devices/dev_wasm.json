@@ -1,0 +1,62 @@
+[
+  {
+    "name": "dev_wasm:create_instance/3",
+    "module": "dev_wasm",
+    "moduleId": "dev_wasm",
+    "functionName": "create_instance",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "WasmCode",
+        "type": "binary",
+        "description": "WebAssembly bytecode"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Instance}",
+        "description": "Created WebAssembly instance"
+      }
+    ],
+    "relatedFunctions": [
+      "`execute/3`",
+      "`validate_module/2`"
+    ],
+    "usageNotes": "- Prepares WebAssembly for execution",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/dev_wasm.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "dev_wasm:execute/3",
+    "module": "dev_wasm",
+    "moduleId": "dev_wasm",
+    "functionName": "execute",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "WasmCode",
+        "type": "binary",
+        "description": "WebAssembly bytecode to execute"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Result}",
+        "description": "Execution result"
+      }
+    ],
+    "relatedFunctions": [
+      "`validate_module/2`",
+      "`handle_message/2`"
+    ],
+    "usageNotes": "- Core function for WebAssembly execution",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/dev_wasm.erl",
+    "lineNumber": 1
+  }
+]

@@ -1,0 +1,229 @@
+{
+  "id": "hb_converge",
+  "name": "HyperBEAM Converge Protocol",
+  "description": "A cornerstone module implementing the core of the Converge Protocol with 49 dependents. Provides a framework for cryptographically chained message processing and serves as the resolution engine for the entire HyperBEAM system.",
+  "content": "# `hb_converge.erl` Analysis\n\n## Overview\n\n`hb_converge.erl` is a cornerstone file in HyperBEAM, implementing the core of the Converge Protocol. With 49 dependents (equal to `hb_util.erl`), it's one of the most critical files in the codebase. \n\nThe Converge Protocol provides a framework for cryptographically chained message processing, where each message is a collection of keys that can be resolved to yield values. These keys are dictated by \"Devices\" (modular components that implement specific functionality), and the resolution of keys creates a secure, traceable chain of computation.\n\nThe module serves as the resolution engine that:\n1. Takes input messages\n2. Determines which device should handle them\n3. Executes the appropriate functions\n4. Handles caching, cryptographic linking, and result management\n5. Manages concurrent executions via a persistent registry\n\n## Dependencies\n\n### Upstream Dependencies\n\nThe module has dependencies on:\n- `include/hb.hrl` for macros and definitions\n- `hb_util` for utility functions like normalization and encoding\n- `hb_path` for manipulating paths in messages\n- `hb_message` for message ID generation\n- `hb_cache_control` for caching resolved values\n- `hb_persistent` for handling concurrent executions\n- `hb_private` for private message fields\n- `hb_opts` for runtime options\n\n### Downstream Dependents\n\n49 other modules depend on this file according to Stage 1 analysis, making it one of the two most widely-used files in the system (along with `hb_util.erl`).\n\n## Key Functions\n\n### Core Resolution Functions\n\n- `resolve/2`, `resolve/3`: The main entry points for resolving messages, taking a message and path/message to execute\n- `resolve_many/2`: Resolves a sequence of messages, using the output of each as input to the next\n- `resolve_stage/N`: A sequence of functions implementing the 11-stage resolution process (internal)\n- `subresolve/4`: Executes a sub-resolution with a specific device\n\n### Message and Device Utilities\n\n- `message_to_fun/3`: Maps a message and key to the Erlang function that should handle it\n- `message_to_device/2`: Extracts the device module from a message\n- `load_device/2`: Loads a device module from a name or message ID\n- `normalize_key/1`, `normalize_key/2`: Converts a key to a normalized binary form\n- `normalize_keys/1`: Ensures a message is processable by converting lists to maps\n\n### Data Access and Manipulation\n\n- `get/2`, `get/3`, `get/4`: Resolves a key in a message (with various options)\n- `get_first/2`, `get_first/3`: Gets the first resolvable path from a sequence\n- `set/2`, `set/3`, `set/4`: Sets a key's value in a message\n- `remove/2`, `remove/3`: Removes a key from a message\n- `keys/1`, `keys/2`, `keys/3`: Gets the list of keys from a message\n- `deep_set/4`: Recursively sets a value at a nested path\n\n### Utility Functions\n\n- `info/2`, `info/3`: Gets the info map for a device\n- `find_exported_function/5`: Finds a function with the given name and highest arity\n- `is_exported/3`, `is_exported/2`: Checks if a device exports a specific key\n- `truncate_args/2`: Truncates arguments to match a function's arity\n- `force_message/2`: Forces a result to be a message\n\n## Usage Patterns\n\nThe `hb_converge` module exhibits several distinctive usage patterns:\n\n1. **Multi-stage Resolution Pipeline**:\n   - The resolution process is divided into 11 discrete stages\n   - Each stage is responsible for a specific part of the process (normalization, caching, device lookup, etc.)\n   - Stages can bypass later stages (e.g., if a cache hit occurs)\n\n2. **Device-based Message Resolution**:\n   - Messages specify a \"device\" that knows how to resolve their keys\n   - Devices can be Erlang modules, maps, or remote code loaded from the network\n   - The module includes sophisticated logic for finding the right function to call for a given key\n\n3. **Persistent Execution Registry**:\n   - Uses a registry to track in-flight executions\n   - Prevents duplicate work by having new callers wait for ongoing executions\n   - Detects infinite recursion loops\n\n4. **Cryptographic Linking**:\n   - Each output is cryptographically linked to its inputs via a hashpath\n   - This creates a verifiable chain of computation\n\n5. **Configurable Behavior**:\n   - Extensive use of options maps to control behavior\n   - Defaults that can be overridden at runtime\n\n## Integration Points\n\n`hb_converge` integrates with other components through several key mechanisms:\n\n1. **Device Interface**:\n   - Defines the contract for devices (exported functions, info/exports, handler, etc.)\n   - All devices in the system must conform to this interface to be usable\n\n2. **Message Format**:\n   - Establishes conventions for message structure (path, device, etc.)\n   - Creates a framework for cryptographic linking via hashpaths\n\n3. **Caching System**:\n   - Integrates with `hb_cache_control` for caching resolved values\n   - Participates in cache invalidation logic\n\n4. **Execution Concurrency**:\n   - Works with `hb_persistent` to manage concurrent execution\n   - Prevents duplicate work on identical requests\n   - Handles worker spawning for long-running processes\n\n5. **Debugging and Tracing**:\n   - Extensive event logging for debugging and tracing\n   - Configurable error handling strategies\n\n## Code Snippets\n\n### Multi-Stage Resolution Pipeline\n\n```erlang\n%% @doc The resolver is composed of a series of discrete phases:\n%%      1: Normalization.\n%%      2: Cache lookup.\n%%      3: Validation check.\n%%      4: Persistent-resolver lookup.\n%%      5: Device lookup.\n%%      6: Execution.\n%%      7: Cryptographic linking.\n%%      8: Result caching.\n%%      9: Notify waiters.\n%%     10: Fork worker.\n%%     11: Recurse or terminate.\nresolve_stage(1, Msg1, Msg2, Opts) when is_list(Msg1) ->\n    % Normalize lists to numbered maps (base=1) if necessary.\n    ?event(converge_core, {stage, 1, list_normalize}, Opts),\n    resolve_stage(1,\n        normalize_keys(Msg1),\n        Msg2,\n        Opts\n    );\n% ... more stages ...\n```\n\n### Device Message Resolution\n\n```erlang\n%% @doc Extract the device module from a message.\nmessage_to_device(Msg, Opts) ->\n    case dev_message:get(device, Msg) of\n        {error, not_found} ->\n            % The message does not specify a device, so we use the default device.\n            default_module();\n        {ok, DevID} ->\n            case load_device(DevID, Opts) of\n                {error, Reason} ->\n                    % Error case: A device is specified, but it is not loadable.\n                    throw({error, {device_not_loadable, DevID, Reason}});\n                {ok, DevMod} -> DevMod\n            end\n    end.\n```\n\n### Function Finding Logic\n\n```erlang\n%% @doc Find the function with the highest arity that has the given name, if it\n%% exists.\nfind_exported_function(_Msg, _Mod, _Key, Arity, _Opts) when Arity < 0 ->\n    not_found;\nfind_exported_function(Msg, Mod, Key, Arity, Opts) when not is_atom(Key) ->\n    try binary_to_existing_atom(normalize_key(Key), latin1) of\n        KeyAtom -> find_exported_function(Msg, Mod, KeyAtom, Arity, Opts)\n    catch _:_ -> not_found\n    end;\nfind_exported_function(Msg, Mod, Key, Arity, Opts) ->\n    case erlang:function_exported(Mod, Key, Arity) of\n        true ->\n            case is_exported(Msg, Mod, Key, Opts) of\n                true -> {ok, fun Mod:Key/Arity};\n                false -> not_found\n            end;\n        false ->\n            find_exported_function(Msg, Mod, Key, Arity - 1, Opts)\n    end.\n```\n\n## Insights\n\n1. **Extensible Computation Model**: The device-based approach creates a highly extensible system where new functionality can be added without modifying the core codebase. This is reminiscent of actor systems but with a more structured message format.\n\n2. **Trust Through Cryptography**: Rather than trying to enforce security through sandboxing or isolation, the system appears to use cryptographic verification to ensure integrity of the computation chain.\n\n3. **Concurrency Control**: The persistent registry and worker management system reveals careful thought about concurrent execution, allowing efficient handling of duplicate requests.\n\n4. **Caching as a First-Class Concept**: The caching system is deeply integrated into the resolution process, indicating performance optimization is a primary concern.\n\n5. **Error Handling Philosophy**: The code shows a consistent approach to error handling with configurable strategies (throw vs. return), providing flexibility for different usage scenarios.",
+  "dependencies": [
+    "hb_path", 
+    "hb_message", 
+    "hb_util", 
+    "hb_cache_control", 
+    "hb_persistent", 
+    "hb_private", 
+    "hb_opts"
+  ],
+  "functions": [
+    {
+      "name": "resolve/2",
+      "description": "Main entry point for resolving messages, taking a message and path to execute.",
+      "parameters": [
+        {
+          "name": "Message",
+          "type": "map()",
+          "description": "The message to be resolved."
+        },
+        {
+          "name": "Path",
+          "type": "binary() | list()",
+          "description": "Path to resolve within the message."
+        }
+      ],
+      "returnType": "{ok, Result} | {error, Reason}",
+      "returnDescription": "Resolved result or error with reason."
+    },
+    {
+      "name": "resolve/3",
+      "description": "Resolves a message against a path with additional options.",
+      "parameters": [
+        {
+          "name": "Message",
+          "type": "map()",
+          "description": "The message to be resolved."
+        },
+        {
+          "name": "Path",
+          "type": "binary() | list()",
+          "description": "Path to resolve within the message."
+        },
+        {
+          "name": "Opts",
+          "type": "map()",
+          "description": "Options controlling resolution behavior."
+        }
+      ],
+      "returnType": "{ok, Result} | {error, Reason}",
+      "returnDescription": "Resolved result or error with reason."
+    },
+    {
+      "name": "resolve_many/2",
+      "description": "Resolves a sequence of messages, using the output of each as input to the next.",
+      "parameters": [
+        {
+          "name": "Messages",
+          "type": "list(map())",
+          "description": "List of messages to be resolved in sequence."
+        },
+        {
+          "name": "Opts",
+          "type": "map()",
+          "description": "Options controlling resolution behavior."
+        }
+      ],
+      "returnType": "{ok, Result} | {error, Reason}",
+      "returnDescription": "Final resolved result or error with reason."
+    },
+    {
+      "name": "get/2",
+      "description": "Resolves a key in a message.",
+      "parameters": [
+        {
+          "name": "Key",
+          "type": "binary() | atom()",
+          "description": "Key to resolve."
+        },
+        {
+          "name": "Message",
+          "type": "map()",
+          "description": "Message containing the key."
+        }
+      ],
+      "returnType": "{ok, Value} | {error, not_found}",
+      "returnDescription": "Resolved value or error if key not found."
+    },
+    {
+      "name": "message_to_device/2",
+      "description": "Extracts the device module from a message.",
+      "parameters": [
+        {
+          "name": "Message",
+          "type": "map()",
+          "description": "Message to extract device from."
+        },
+        {
+          "name": "Opts",
+          "type": "map()",
+          "description": "Options for device lookup."
+        }
+      ],
+      "returnType": "module()",
+      "returnDescription": "Device module to handle the message."
+    },
+    {
+      "name": "load_device/2",
+      "description": "Loads a device module from a name or message ID.",
+      "parameters": [
+        {
+          "name": "DeviceID",
+          "type": "binary() | atom()",
+          "description": "Device identifier to load."
+        },
+        {
+          "name": "Opts",
+          "type": "map()",
+          "description": "Options for device loading."
+        }
+      ],
+      "returnType": "{ok, Module} | {error, Reason}",
+      "returnDescription": "Loaded module or error with reason."
+    },
+    {
+      "name": "subresolve/4",
+      "description": "Executes a sub-resolution with a specific device.",
+      "parameters": [
+        {
+          "name": "Device",
+          "type": "module()",
+          "description": "Device module to handle the resolution."
+        },
+        {
+          "name": "Message",
+          "type": "map()",
+          "description": "Message to resolve."
+        },
+        {
+          "name": "Path",
+          "type": "binary() | list()",
+          "description": "Path to resolve."
+        },
+        {
+          "name": "Opts",
+          "type": "map()",
+          "description": "Options for resolution."
+        }
+      ],
+      "returnType": "{ok, Result} | {error, Reason}",
+      "returnDescription": "Resolved result or error with reason."
+    },
+    {
+      "name": "message_to_fun/3",
+      "description": "Maps a message and key to the Erlang function that should handle it.",
+      "parameters": [
+        {
+          "name": "Message",
+          "type": "map()",
+          "description": "Message containing the key."
+        },
+        {
+          "name": "Key",
+          "type": "binary() | atom()",
+          "description": "Key to map to a function."
+        },
+        {
+          "name": "Opts",
+          "type": "map()",
+          "description": "Options for function mapping."
+        }
+      ],
+      "returnType": "{ok, fun()} | not_found",
+      "returnDescription": "Function to handle the key or not_found if no function exists."
+    },
+    {
+      "name": "find_exported_function/5",
+      "description": "Finds a function with the given name and highest arity.",
+      "parameters": [
+        {
+          "name": "Message",
+          "type": "map()",
+          "description": "Message for context."
+        },
+        {
+          "name": "Module",
+          "type": "module()",
+          "description": "Module to search in."
+        },
+        {
+          "name": "Key",
+          "type": "binary() | atom()",
+          "description": "Function name to find."
+        },
+        {
+          "name": "Arity",
+          "type": "integer()",
+          "description": "Maximum arity to consider."
+        },
+        {
+          "name": "Opts",
+          "type": "map()",
+          "description": "Options for function finding."
+        }
+      ],
+      "returnType": "{ok, fun()} | not_found",
+      "returnDescription": "Function with highest arity or not_found."
+    },
+    {
+      "name": "normalize_key/1",
+      "description": "Converts a key to a normalized binary form.",
+      "parameters": [
+        {
+          "name": "Key",
+          "type": "term()",
+          "description": "Key to normalize."
+        }
+      ],
+      "returnType": "binary()",
+      "returnDescription": "Normalized binary key."
+    }
+  ],
+  "hasMermaid": false,
+  "hasCode": true
+}

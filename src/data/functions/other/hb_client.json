@@ -1,0 +1,62 @@
+[
+  {
+    "name": "hb_client:request/3",
+    "module": "hb_client",
+    "moduleId": "hb_client",
+    "functionName": "request",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "Message to send"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Response}",
+        "description": "Successfully received response"
+      }
+    ],
+    "relatedFunctions": [
+      "`request_async/3`",
+      "`resolve_endpoint/2`"
+    ],
+    "usageNotes": "- Primary function for external communication",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_client.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "hb_client:resolve_endpoint/2",
+    "module": "hb_client",
+    "moduleId": "hb_client",
+    "functionName": "resolve_endpoint",
+    "arity": 2,
+    "description": "",
+    "params": [
+      {
+        "name": "Endpoint",
+        "type": "binary or map",
+        "description": "Endpoint specification"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, ResolvedEndpoint}",
+        "description": "Successfully resolved endpoint"
+      }
+    ],
+    "relatedFunctions": [
+      "`request/3`",
+      "`get_connection/2`"
+    ],
+    "usageNotes": "- Resolves symbolic endpoints to concrete connections",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_client.erl",
+    "lineNumber": 1
+  }
+]

@@ -1,0 +1,64 @@
+[
+  {
+    "name": "dev_message:get/3",
+    "module": "dev_message",
+    "moduleId": "dev_message",
+    "functionName": "get",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "Message to get value from"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Value}",
+        "description": "Successfully retrieved value"
+      }
+    ],
+    "relatedFunctions": [
+      "`set/4`",
+      "`update/4`",
+      "`handle_message/2`"
+    ],
+    "usageNotes": "- Fundamental message access operation",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/dev_message.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "dev_message:handle_message/2",
+    "module": "dev_message",
+    "moduleId": "dev_message",
+    "functionName": "handle_message",
+    "arity": 2,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "Message to handle"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Response}",
+        "description": "Successfully handled message"
+      }
+    ],
+    "relatedFunctions": [
+      "`get/3`",
+      "`set/4`",
+      "`update/4`"
+    ],
+    "usageNotes": "- Provides basic message field access operations",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/dev_message.erl",
+    "lineNumber": 1
+  }
+]

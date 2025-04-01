@@ -1,0 +1,63 @@
+[
+  {
+    "name": "dev_process:handle_message/2",
+    "module": "dev_process",
+    "moduleId": "dev_process",
+    "functionName": "handle_message",
+    "arity": 2,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "Message to handle"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Response}",
+        "description": "Successfully handled message"
+      }
+    ],
+    "relatedFunctions": [
+      "`create/2`",
+      "`invoke/3`",
+      "`swap_device/3`"
+    ],
+    "usageNotes": "- Main entry point for process operations",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/dev_process.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "dev_process:swap_device/3",
+    "module": "dev_process",
+    "moduleId": "dev_process",
+    "functionName": "swap_device",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "Current message"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, UpdatedMessage}",
+        "description": "Message with device swapped"
+      }
+    ],
+    "relatedFunctions": [
+      "`handle_message/2`",
+      "`invoke/3`"
+    ],
+    "usageNotes": "- Key implementation of device delegation pattern",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/dev_process.erl",
+    "lineNumber": 1
+  }
+]

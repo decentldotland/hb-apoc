@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-color: #1e1e1e;
+  --text-color: #f0f0f0;
+  --primary-color: #569cd6;
+  --secondary-color: #4ec9b0;
+  --accent-color: #ce9178;
+  --terminal-green: #4ec9b0;
+  --terminal-prompt: #569cd6;
+  --terminal-command: #ce9178;
+  --terminal-output: #dcdcaa;
+  --header-height: 60px;
+  --sidebar-width: 300px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Consolas', 'Courier New', monospace;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Terminal customization */
+.terminal {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.xterm-screen, .xterm-viewport {
+  width: 100% !important;
+}
+
+/* Code blocks styling */
+pre {
+  background-color: #2d2d2d;
+  padding: 15px;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin-bottom: 15px;
+}
+
+code {
+  font-family: 'Consolas', 'Courier New', monospace;
+  background-color: #2d2d2d;
+  padding: 2px 4px;
+  border-radius: 3px;
+  color: var(--terminal-output);
+}
+
+/* Terminal-style headings */
+h1::before {
+  content: "# ";
+  color: var(--terminal-green);
+}
+
+h2::before {
+  content: "## ";
+  color: var(--terminal-green);
+}
+
+h3::before {
+  content: "### ";
+  color: var(--terminal-green);
+}
+
+/* Terminal-style links */
+.terminal-link::before {
+  content: "> ";
+  color: var(--terminal-green);
+}
+
+/* GitHub code link */
+.github-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #333;
+  padding: 3px 8px;
+  border-radius: 0 5px 0 5px;
+  font-size: 0.75rem;
+  color: var(--terminal-green);
+}
+
+/* Mobile responsiveness tweaks */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    height: calc(100vh - var(--header-height));
+    z-index: 10;
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .sidebar.show {
+    display: block;
+  }
+}

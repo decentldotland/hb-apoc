@@ -1,0 +1,88 @@
+[
+  {
+    "name": "hb_store:get/2",
+    "module": "hb_store",
+    "moduleId": "hb_store",
+    "functionName": "get",
+    "arity": 2,
+    "description": "",
+    "params": [
+      {
+        "name": "Key",
+        "type": "binary",
+        "description": "Content hash or identifier"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Value}",
+        "description": "Successfully retrieved data"
+      }
+    ],
+    "relatedFunctions": [
+      "`put/3`",
+      "`exists/2`"
+    ],
+    "usageNotes": "- Primary function for retrieving stored data",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_store.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "hb_store:put/3",
+    "module": "hb_store",
+    "moduleId": "hb_store",
+    "functionName": "put",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "Key",
+        "type": "binary",
+        "description": "Content hash or identifier"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Key}",
+        "description": "Successfully stored with key"
+      }
+    ],
+    "relatedFunctions": [
+      "`get/2`",
+      "`exists/2`",
+      "`delete/2`"
+    ],
+    "usageNotes": "- Primary function for persisting data",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_store.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "hb_store:walk/3",
+    "module": "hb_store",
+    "moduleId": "hb_store",
+    "functionName": "walk",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "Key",
+        "type": "binary",
+        "description": "Starting key to walk from"
+      }
+    ],
+    "returns": [],
+    "relatedFunctions": [
+      "`list/2`",
+      "`fold/4`"
+    ],
+    "usageNotes": "- Enables traversal of hierarchical structures",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_store.erl",
+    "lineNumber": 1
+  }
+]

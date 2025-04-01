@@ -1,0 +1,16 @@
+{
+  "name": "Arweave Integration",
+  "description": "Functions for interacting with the Arweave blockchain, creating and submitting transactions, and managing data on the permaweb.",
+  "modules": [
+    {
+      "id": "ar_wallet",
+      "name": "Arweave Wallet",
+      "count": 2
+    },
+    {
+      "id": "ar_bundles",
+      "name": "Arweave Bundles",
+      "count": 2
+    }
+  ]
+}

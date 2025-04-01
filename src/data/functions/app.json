@@ -1,0 +1,5 @@
+{
+  "name": "Application Management",
+  "description": "Functions for application lifecycle management, deployment, sandboxing, and resource allocation.",
+  "modules": []
+}

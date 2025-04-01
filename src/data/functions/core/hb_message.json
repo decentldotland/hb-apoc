@@ -1,0 +1,92 @@
+[
+  {
+    "name": "hb_message:from_external/3",
+    "module": "hb_message",
+    "moduleId": "hb_message",
+    "functionName": "from_external",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "ExternalMessage",
+        "type": "term",
+        "description": "External message to convert"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Message}",
+        "description": "Successfully converted internal message"
+      }
+    ],
+    "relatedFunctions": [
+      "`to_external/3`",
+      "`find_codec/2`"
+    ],
+    "usageNotes": "- Paired with `to_external/3` for round-trip conversions",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_message.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "hb_message:to_external/3",
+    "module": "hb_message",
+    "moduleId": "hb_message",
+    "functionName": "to_external",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "Internal message to convert"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, ExternalMessage}",
+        "description": "Successfully converted message"
+      }
+    ],
+    "relatedFunctions": [
+      "`from_external/3`",
+      "`find_codec/2`"
+    ],
+    "usageNotes": "- Key boundary function for protocol adaptation",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_message.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "hb_message:verify_attestation/3",
+    "module": "hb_message",
+    "moduleId": "hb_message",
+    "functionName": "verify_attestation",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "Message containing attestation"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Message}",
+        "description": "Attestation verified successfully"
+      }
+    ],
+    "relatedFunctions": [
+      "`add_attestation/3`",
+      "`attestation_payload/2`"
+    ],
+    "usageNotes": "- Critical security function for validating message authenticity",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_message.erl",
+    "lineNumber": 1
+  }
+]

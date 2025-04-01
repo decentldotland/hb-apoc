@@ -1,0 +1,158 @@
+{
+  "subsystems": [
+    {
+      "id": "core",
+      "name": "Core Infrastructure",
+      "count": 13,
+      "modules": [
+        {
+          "id": "hb_converge",
+          "name": "Convergence Protocol",
+          "count": 3
+        },
+        {
+          "id": "hb_message",
+          "name": "Message Handling",
+          "count": 3
+        },
+        {
+          "id": "hb_path",
+          "name": "Path Routing",
+          "count": 2
+        },
+        {
+          "id": "hb_opts",
+          "name": "Configuration",
+          "count": 2
+        },
+        {
+          "id": "hb_util",
+          "name": "Utility Functions",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "storage",
+      "name": "Storage Subsystem",
+      "count": 5,
+      "modules": [
+        {
+          "id": "hb_store",
+          "name": "Storage Interface",
+          "count": 3
+        },
+        {
+          "id": "hb_cache",
+          "name": "Caching Layer",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "network",
+      "name": "Network Subsystem",
+      "count": 4,
+      "modules": [
+        {
+          "id": "hb_http",
+          "name": "HTTP Protocol",
+          "count": 2
+        },
+        {
+          "id": "hb_client",
+          "name": "Client Interface",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "codec",
+      "name": "Codec Subsystem",
+      "count": 4,
+      "modules": [
+        {
+          "id": "dev_codec_structured",
+          "name": "Structured Codec Device",
+          "count": 2
+        },
+        {
+          "id": "dev_codec_httpsig",
+          "name": "HTTP Signature Codec Device",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "arweave",
+      "name": "Arweave Integration",
+      "count": 4,
+      "modules": [
+        {
+          "id": "ar_wallet",
+          "name": "Arweave Wallet",
+          "count": 2
+        },
+        {
+          "id": "ar_bundles",
+          "name": "Arweave Bundles",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "app",
+      "name": "Application Management",
+      "count": 0,
+      "modules": []
+    },
+    {
+      "id": "devices",
+      "name": "Device Ecosystem",
+      "count": 14,
+      "modules": [
+        {
+          "id": "dev_scheduler",
+          "name": "Scheduler Device",
+          "count": 2
+        },
+        {
+          "id": "dev_process",
+          "name": "Process Device",
+          "count": 2
+        },
+        {
+          "id": "dev_message",
+          "name": "Message Device",
+          "count": 2
+        },
+        {
+          "id": "dev_stack",
+          "name": "Stack Device",
+          "count": 2
+        },
+        {
+          "id": "dev_wasm",
+          "name": "WebAssembly Device",
+          "count": 2
+        },
+        {
+          "id": "dev_green_zone",
+          "name": "Green Zone Device",
+          "count": 2
+        },
+        {
+          "id": "dev_p4",
+          "name": "P4 Payment Device",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "name": "Additional Modules",
+      "count": 0,
+      "modules": []
+    }
+  ]
+}

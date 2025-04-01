@@ -1,0 +1,62 @@
+[
+  {
+    "name": "hb_http:message_to_response/2",
+    "module": "hb_http",
+    "moduleId": "hb_http",
+    "functionName": "message_to_response",
+    "arity": 2,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "Internal message to convert"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Response}",
+        "description": "Successfully converted HTTP response"
+      }
+    ],
+    "relatedFunctions": [
+      "`request_to_message/2`",
+      "`encode_body/2`"
+    ],
+    "usageNotes": "- Paired with `request_to_message/2` for HTTP conversions",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_http.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "hb_http:request_to_message/2",
+    "module": "hb_http",
+    "moduleId": "hb_http",
+    "functionName": "request_to_message",
+    "arity": 2,
+    "description": "",
+    "params": [
+      {
+        "name": "Request",
+        "type": "map",
+        "description": "HTTP request to convert"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, Message}",
+        "description": "Successfully converted message"
+      }
+    ],
+    "relatedFunctions": [
+      "`message_to_response/2`",
+      "`decode_body/2`"
+    ],
+    "usageNotes": "- Key boundary function for HTTP integration",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_http.erl",
+    "lineNumber": 1
+  }
+]

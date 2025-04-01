@@ -1,0 +1,62 @@
+[
+  {
+    "name": "hb_path:hash_path/3",
+    "module": "hb_path",
+    "moduleId": "hb_path",
+    "functionName": "hash_path",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "Message",
+        "type": "map",
+        "description": "Message to generate hash path for"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, HashPath}",
+        "description": "Generated hash path"
+      }
+    ],
+    "relatedFunctions": [
+      "`verify_hash_path/4`",
+      "`derive_hash_path/3`"
+    ],
+    "usageNotes": "- Key function for cryptographic verification of message parts",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_path.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "hb_path:parse/1",
+    "module": "hb_path",
+    "moduleId": "hb_path",
+    "functionName": "parse",
+    "arity": 1,
+    "description": "",
+    "params": [
+      {
+        "name": "PathString",
+        "type": "binary or string",
+        "description": "Path to parse"
+      }
+    ],
+    "returns": [
+      {
+        "type": "{ok, ParsedPath}",
+        "description": "Successfully parsed path"
+      }
+    ],
+    "relatedFunctions": [
+      "`to_string/1`",
+      "`normalize/1`"
+    ],
+    "usageNotes": "- Fundamental function for path handling",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_path.erl",
+    "lineNumber": 1
+  }
+]

@@ -1,0 +1,167 @@
+{
+  "summary": {
+    "totalSections": 21,
+    "validFunctions": 44,
+    "failedSections": 0,
+    "moduleCount": 20
+  },
+  "subsystems": {
+    "core": {
+      "name": "Core Infrastructure",
+      "moduleCount": 5,
+      "functionCount": 13,
+      "modules": [
+        {
+          "name": "hb_converge",
+          "count": 3
+        },
+        {
+          "name": "hb_message",
+          "count": 3
+        },
+        {
+          "name": "hb_path",
+          "count": 2
+        },
+        {
+          "name": "hb_opts",
+          "count": 2
+        },
+        {
+          "name": "hb_util",
+          "count": 3
+        }
+      ]
+    },
+    "storage": {
+      "name": "Storage Subsystem",
+      "moduleCount": 2,
+      "functionCount": 5,
+      "modules": [
+        {
+          "name": "hb_store",
+          "count": 3
+        },
+        {
+          "name": "hb_cache",
+          "count": 2
+        }
+      ]
+    },
+    "network": {
+      "name": "Network Subsystem",
+      "moduleCount": 2,
+      "functionCount": 4,
+      "modules": [
+        {
+          "name": "hb_http",
+          "count": 2
+        },
+        {
+          "name": "hb_client",
+          "count": 2
+        }
+      ]
+    },
+    "codec": {
+      "name": "Codec Subsystem",
+      "moduleCount": 2,
+      "functionCount": 4,
+      "modules": [
+        {
+          "name": "dev_codec_structured",
+          "count": 2
+        },
+        {
+          "name": "dev_codec_httpsig",
+          "count": 2
+        }
+      ]
+    },
+    "arweave": {
+      "name": "Arweave Integration",
+      "moduleCount": 2,
+      "functionCount": 4,
+      "modules": [
+        {
+          "name": "ar_wallet",
+          "count": 2
+        },
+        {
+          "name": "ar_bundles",
+          "count": 2
+        }
+      ]
+    },
+    "app": {
+      "name": "Application Management",
+      "moduleCount": 0,
+      "functionCount": 0,
+      "modules": []
+    },
+    "devices": {
+      "name": "Device Ecosystem",
+      "moduleCount": 7,
+      "functionCount": 14,
+      "modules": [
+        {
+          "name": "dev_scheduler",
+          "count": 2
+        },
+        {
+          "name": "dev_process",
+          "count": 2
+        },
+        {
+          "name": "dev_message",
+          "count": 2
+        },
+        {
+          "name": "dev_stack",
+          "count": 2
+        },
+        {
+          "name": "dev_wasm",
+          "count": 2
+        },
+        {
+          "name": "dev_green_zone",
+          "count": 2
+        },
+        {
+          "name": "dev_p4",
+          "count": 2
+        }
+      ]
+    },
+    "other": {
+      "name": "Additional Modules",
+      "moduleCount": 0,
+      "functionCount": 0,
+      "modules": []
+    }
+  },
+  "functionsByModule": {
+    "hb_converge": 3,
+    "hb_message": 3,
+    "hb_path": 2,
+    "hb_opts": 2,
+    "hb_util": 3,
+    "hb_store": 3,
+    "hb_cache": 2,
+    "hb_http": 2,
+    "hb_client": 2,
+    "dev_scheduler": 2,
+    "dev_process": 2,
+    "dev_message": 2,
+    "dev_stack": 2,
+    "dev_codec_structured": 2,
+    "dev_codec_httpsig": 2,
+    "ar_wallet": 2,
+    "ar_bundles": 2,
+    "dev_wasm": 2,
+    "dev_green_zone": 2,
+    "dev_p4": 2
+  },
+  "failedSections": 0
+}

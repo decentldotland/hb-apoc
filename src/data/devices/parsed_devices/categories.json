@@ -1,0 +1,176 @@
+{
+  "scheduler": [
+    {
+      "id": "dev_scheduler",
+      "name": "dev_scheduler.erl",
+      "filename": "dev_scheduler.erl"
+    },
+    {
+      "id": "dev_scheduler_cache",
+      "name": "dev_scheduler_cache.erl",
+      "filename": "dev_scheduler_cache.erl"
+    },
+    {
+      "id": "dev_scheduler_formats",
+      "name": "dev_scheduler_formats.erl",
+      "filename": "dev_scheduler_formats.erl"
+    },
+    {
+      "id": "dev_scheduler_registry",
+      "name": "dev_scheduler_registry.erl",
+      "filename": "dev_scheduler_registry.erl"
+    },
+    {
+      "id": "dev_scheduler_server",
+      "name": "dev_scheduler_server.erl",
+      "filename": "dev_scheduler_server.erl"
+    },
+    {
+      "id": "dev_push",
+      "name": "Message Push Device",
+      "filename": "dev_push.erl"
+    }
+  ],
+  "security": [
+    {
+      "id": "dev_process",
+      "name": "dev_process.erl",
+      "filename": "dev_process.erl"
+    },
+    {
+      "id": "dev_message",
+      "name": "dev_message.erl",
+      "filename": "dev_message.erl"
+    },
+    {
+      "id": "dev_stack",
+      "name": "dev_stack.erl",
+      "filename": "dev_stack.erl"
+    },
+    {
+      "id": "dev_json_iface",
+      "name": "JSON Interface",
+      "filename": "dev_json_iface.erl"
+    },
+    {
+      "id": "dev_meta",
+      "name": "Meta Device",
+      "filename": "dev_meta.erl"
+    },
+    {
+      "id": "dev_router",
+      "name": "Router Device",
+      "filename": "dev_router.erl"
+    },
+    {
+      "id": "dev_snp` and `dev_snp_nif.erl",
+      "name": "SNP System",
+      "filename": "dev_snp.erl` and `dev_snp_nif.erl"
+    },
+    {
+      "id": "dev_green_zone",
+      "name": "Green Zone System",
+      "filename": "dev_green_zone.erl"
+    },
+    {
+      "id": "dev_faff",
+      "name": "Friends and Family Pricing Policy",
+      "filename": "dev_faff.erl"
+    },
+    {
+      "id": "dev_cu",
+      "name": "Computation Unit Tracking Device",
+      "filename": "dev_cu.erl"
+    },
+    {
+      "id": "dev_patch",
+      "name": "Path Patching Device",
+      "filename": "dev_patch.erl"
+    },
+    {
+      "id": "dev_poda",
+      "name": "Proof of Data Availability Device",
+      "filename": "dev_poda.erl"
+    }
+  ],
+  "core": [
+    {
+      "id": "dev_process_cache",
+      "name": "dev_process_cache.erl",
+      "filename": "dev_process_cache.erl"
+    },
+    {
+      "id": "dev_process_worker",
+      "name": "dev_process_worker.erl",
+      "filename": "dev_process_worker.erl"
+    }
+  ],
+  "runtime": [
+    {
+      "id": "dev_wasm` and `dev_wasi.erl",
+      "name": "WebAssembly Runtime",
+      "filename": "dev_wasm.erl` and `dev_wasi.erl"
+    },
+    {
+      "id": "dev_delegated_compute",
+      "name": "Delegated Computation Device",
+      "filename": "dev_delegated_compute.erl"
+    },
+    {
+      "id": "dev_genesis_wasm",
+      "name": "Genesis WebAssembly Device",
+      "filename": "dev_genesis_wasm.erl"
+    }
+  ],
+  "payment": [
+    {
+      "id": "dev_p4",
+      "name": "Payment System",
+      "filename": "dev_p4.erl"
+    }
+  ],
+  "utility": [
+    {
+      "id": "dev_simple_pay",
+      "name": "Simple Payment System",
+      "filename": "dev_simple_pay.erl"
+    },
+    {
+      "id": "dev_cron",
+      "name": "Scheduled Execution Device",
+      "filename": "dev_cron.erl"
+    },
+    {
+      "id": "dev_dedup",
+      "name": "Message Deduplication Device",
+      "filename": "dev_dedup.erl"
+    },
+    {
+      "id": "dev_test",
+      "name": "Testing Utility Device",
+      "filename": "dev_test.erl"
+    },
+    {
+      "id": "dev_monitor",
+      "name": "Process Monitoring Device",
+      "filename": "dev_monitor.erl"
+    },
+    {
+      "id": "dev_multipass",
+      "name": "Multi-Stage Processing Device",
+      "filename": "dev_multipass.erl"
+    }
+  ],
+  "routing": [
+    {
+      "id": "dev_lookup",
+      "name": "Path Lookup Device",
+      "filename": "dev_lookup.erl"
+    },
+    {
+      "id": "dev_relay",
+      "name": "Message Relay Device",
+      "filename": "dev_relay.erl"
+    }
+  ]
+}

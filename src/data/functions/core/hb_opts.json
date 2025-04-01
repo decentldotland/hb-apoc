@@ -1,0 +1,53 @@
+[
+  {
+    "name": "hb_opts:get/3",
+    "module": "hb_opts",
+    "moduleId": "hb_opts",
+    "functionName": "get",
+    "arity": 3,
+    "description": "",
+    "params": [
+      {
+        "name": "Path",
+        "type": "binary or list",
+        "description": "Path to the configuration value"
+      }
+    ],
+    "returns": [],
+    "relatedFunctions": [
+      "`set/3`",
+      "`merge/2`",
+      "`with_defaults/2`"
+    ],
+    "usageNotes": "- Fundamental configuration access function",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_opts.erl",
+    "lineNumber": 1
+  },
+  {
+    "name": "hb_opts:with_defaults/2",
+    "module": "hb_opts",
+    "moduleId": "hb_opts",
+    "functionName": "with_defaults",
+    "arity": 2,
+    "description": "",
+    "params": [
+      {
+        "name": "Opts",
+        "type": "map",
+        "description": "Current options map"
+      }
+    ],
+    "returns": [],
+    "relatedFunctions": [
+      "`get/3`",
+      "`merge/2`"
+    ],
+    "usageNotes": "- Common pattern for handling configuration defaults",
+    "examples": [],
+    "apiType": "public",
+    "sourceFile": "src/hb_opts.erl",
+    "lineNumber": 1
+  }
+]
