@@ -9,22 +9,32 @@ export function initializeSidebar() {
     closeButton.innerHTML = '×';
     sidebar.appendChild(closeButton);
 
-    // Move version selector to sidebar on mobile
+    // Handle version selector on mobile
     if (window.innerWidth <= 768) {
-        const versionWrapper = document.querySelector('.select-wrapper');
-        if (versionWrapper) {
-            const sidebarVersionWrapper = versionWrapper.cloneNode(true);
+        const headerVersionWrapper = document.querySelector('.header-content .select-wrapper');
+        if (headerVersionWrapper) {
+            // Clone version selector for sidebar
+            const sidebarVersionWrapper = headerVersionWrapper.cloneNode(true);
+            sidebarVersionWrapper.classList.add('mobile-version-selector');
+            
+            // Insert at the top of sidebar
             sidebar.insertBefore(sidebarVersionWrapper, sidebar.firstChild);
             
-            // Re-initialize version selector in sidebar
-            const select = sidebarVersionWrapper.querySelector('select');
-            if (select) {
-                select.addEventListener('change', (e) => {
-                    const originalSelect = document.querySelector('.header-content .version-select');
-                    if (originalSelect) {
-                        originalSelect.value = e.target.value;
-                        originalSelect.dispatchEvent(new Event('change'));
-                    }
+            // Sync version selectors
+            const sidebarSelect = sidebarVersionWrapper.querySelector('select');
+            const headerSelect = headerVersionWrapper.querySelector('select');
+            
+            if (sidebarSelect && headerSelect) {
+                // Keep them in sync
+                sidebarSelect.value = headerSelect.value;
+                
+                sidebarSelect.addEventListener('change', (e) => {
+                    headerSelect.value = e.target.value;
+                    headerSelect.dispatchEvent(new Event('change'));
+                });
+                
+                headerSelect.addEventListener('change', (e) => {
+                    sidebarSelect.value = e.target.value;
                 });
             }
         }
@@ -47,16 +57,37 @@ export function initializeSidebar() {
                       e.target.classList.contains('file') ||
                       e.target.closest('.file');
         
-        if (isLink) {
+        const isVersionSelect = e.target.tagName === 'SELECT' ||
+                              e.target.closest('.select-wrapper');
+        
+        // Don't close if clicking version selector
+        if (isLink && !isVersionSelect) {
             setTimeout(() => {
                 sidebar.classList.remove('active');
             }, 150); // Small delay for better UX
         }
     });
 
-    // Show contributors section by default on mobile
+    // Handle contributors section
+    const contributorsToggle = document.querySelector('.contributors-toggle');
     const contributorsContent = document.querySelector('.contributors-content');
-    if (window.innerWidth <= 768) {
-        contributorsContent.classList.remove('collapsed');
+    
+    if (contributorsToggle && contributorsContent) {
+        contributorsToggle.addEventListener('click', () => {
+            contributorsContent.classList.toggle('collapsed');
+            const icon = contributorsToggle.querySelector('.toggle-icon');
+            if (icon) {
+                icon.textContent = contributorsContent.classList.contains('collapsed') ? '▼' : '▲';
+            }
+        });
+
+        // Show contributors by default on mobile
+        if (window.innerWidth <= 768) {
+            contributorsContent.classList.remove('collapsed');
+            const icon = contributorsToggle.querySelector('.toggle-icon');
+            if (icon) {
+                icon.textContent = '▲';
+            }
+        }
     }
 }
