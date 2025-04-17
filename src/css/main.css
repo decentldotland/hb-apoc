@@ -63,6 +63,24 @@ body {
     body {
         flex-direction: column;
         font-size: 14px;
+        line-height: 1.4;
+    }
+
+    /* Improve heading readability */
+    h1 { font-size: 1.4em; margin: 0.8em 0 0.4em; }
+    h2 { font-size: 1.2em; margin: 0.6em 0 0.3em; }
+    h3 { font-size: 1.1em; margin: 0.5em 0 0.25em; }
+
+    /* Better list and paragraph spacing */
+    p { margin: 0.8em 0; }
+    ul, ol { margin: 0.8em 0; padding-left: 1.2em; }
+    li { margin: 0.4em 0; }
+
+    /* Improve code readability */
+    code {
+        font-size: 0.9em;
+        padding: 2px 4px;
+        word-break: break-word;
     }
 
     #sidebar {
@@ -100,28 +118,52 @@ body {
     }
 
     #content {
-        padding: 10px 5px;
+        padding: 10px 12px;
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
     /* Improve list alignment */
     #content ul {
-        padding-left: 15px;
-        margin: 10px 0;
+        padding-left: 1.2em;
+        margin: 0.8em 0;
     }
 
     #content li {
-        margin: 5px 0;
+        margin: 0.4em 0;
+        line-height: 1.4;
     }
 
     /* Better code block display */
     pre {
-        margin: 1rem -5px;
+        margin: 1rem -12px;
         border-radius: 0;
+        border-left: none;
+        border-right: none;
     }
 
     pre code {
-        padding: 25px 10px 10px;
+        padding: 25px 12px 12px;
         font-size: 13px;
+        line-height: 1.5;
+        tab-size: 2;
+    }
+
+    /* Improve blockquote display */
+    blockquote {
+        margin: 1rem -12px;
+        border-radius: 0;
+        border-left: 4px solid var(--terminal-green);
+        padding: 12px;
+    }
+
+    /* Terminal improvements */
+    .terminal {
+        margin: 1rem -12px;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        padding: 15px 12px;
     }
 
     .file-tree li[data-path]:hover::after {
