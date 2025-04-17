@@ -110,6 +110,22 @@ export function initializeSidebar() {
     const contributorsContent = document.querySelector('.contributors-content');
     
     if (contributorsToggle && contributorsContent) {
+        // Show contributors by default on mobile
+        if (window.innerWidth <= 768) {
+            contributorsContent.classList.remove('collapsed');
+            const icon = contributorsToggle.querySelector('.toggle-icon');
+            if (icon) {
+                icon.textContent = '▲';
+            }
+        } else {
+            // Keep collapsed on desktop
+            contributorsContent.classList.add('collapsed');
+            const icon = contributorsToggle.querySelector('.toggle-icon');
+            if (icon) {
+                icon.textContent = '▼';
+            }
+        }
+
         contributorsToggle.addEventListener('click', () => {
             contributorsContent.classList.toggle('collapsed');
             const icon = contributorsToggle.querySelector('.toggle-icon');
@@ -117,12 +133,24 @@ export function initializeSidebar() {
                 icon.textContent = contributorsContent.classList.contains('collapsed') ? '▼' : '▲';
             }
         });
-
-        // Keep contributors collapsed by default
-        contributorsContent.classList.add('collapsed');
-        const icon = contributorsToggle.querySelector('.toggle-icon');
-        if (icon) {
-            icon.textContent = '▼';
-        }
     }
+
+    // Handle window resize for mobile/desktop transitions
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768) {
+            // Mobile view
+            if (contributorsContent) {
+                contributorsContent.classList.remove('collapsed');
+                const icon = contributorsToggle?.querySelector('.toggle-icon');
+                if (icon) icon.textContent = '▲';
+            }
+        } else {
+            // Desktop view
+            if (contributorsContent) {
+                contributorsContent.classList.add('collapsed');
+                const icon = contributorsToggle?.querySelector('.toggle-icon');
+                if (icon) icon.textContent = '▼';
+            }
+        }
+    });
 }
