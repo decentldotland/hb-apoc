@@ -105,52 +105,30 @@ export function initializeSidebar() {
         }
     });
 
-    // Handle contributors section
-    const contributorsToggle = document.querySelector('.contributors-toggle');
-    const contributorsContent = document.querySelector('.contributors-content');
-    
-    if (contributorsToggle && contributorsContent) {
-        // Show contributors by default on mobile
-        if (window.innerWidth <= 768) {
-            contributorsContent.classList.remove('collapsed');
-            const icon = contributorsToggle.querySelector('.toggle-icon');
-            if (icon) {
-                icon.textContent = '▲';
-            }
-        } else {
-            // Keep collapsed on desktop
-            contributorsContent.classList.add('collapsed');
-            const icon = contributorsToggle.querySelector('.toggle-icon');
-            if (icon) {
-                icon.textContent = '▼';
-            }
-        }
+    // Initialize contributors section
+    function initializeContributors() {
+        const contributorsToggle = document.querySelector('.contributors-toggle');
+        const contributorsContent = document.querySelector('.contributors-content');
+        
+        if (!contributorsToggle || !contributorsContent) return;
 
-        contributorsToggle.addEventListener('click', () => {
+        // Start collapsed
+        contributorsContent.classList.add('collapsed');
+        const icon = contributorsToggle.querySelector('.toggle-icon');
+        if (icon) icon.textContent = '▼';
+
+        // Handle toggle click
+        contributorsToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
             contributorsContent.classList.toggle('collapsed');
-            const icon = contributorsToggle.querySelector('.toggle-icon');
             if (icon) {
                 icon.textContent = contributorsContent.classList.contains('collapsed') ? '▼' : '▲';
             }
         });
     }
 
-    // Handle window resize for mobile/desktop transitions
-    window.addEventListener('resize', () => {
-        if (window.innerWidth <= 768) {
-            // Mobile view
-            if (contributorsContent) {
-                contributorsContent.classList.remove('collapsed');
-                const icon = contributorsToggle?.querySelector('.toggle-icon');
-                if (icon) icon.textContent = '▲';
-            }
-        } else {
-            // Desktop view
-            if (contributorsContent) {
-                contributorsContent.classList.add('collapsed');
-                const icon = contributorsToggle?.querySelector('.toggle-icon');
-                if (icon) icon.textContent = '▼';
-            }
-        }
-    });
+    // Initialize contributors section
+    initializeContributors();
 }
