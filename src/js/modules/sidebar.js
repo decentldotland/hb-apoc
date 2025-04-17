@@ -9,6 +9,10 @@ export function initializeSidebar() {
     closeButton.innerHTML = '×';
     sidebar.appendChild(closeButton);
 
+    // Ensure sidebar starts closed
+    sidebar.classList.remove('active');
+    sidebarToggle.innerHTML = '☰';
+
     // Handle version selector on mobile
     if (window.innerWidth <= 768) {
         const headerVersionWrapper = document.querySelector('.header-content .select-wrapper');
@@ -42,12 +46,14 @@ export function initializeSidebar() {
 
     // Toggle sidebar
     sidebarToggle.addEventListener('click', () => {
-        sidebar.classList.add('active');
+        sidebar.classList.toggle('active');
+        sidebarToggle.innerHTML = sidebar.classList.contains('active') ? '☰' : '☰';
     });
 
     // Close sidebar
     closeButton.addEventListener('click', () => {
         sidebar.classList.remove('active');
+        sidebarToggle.innerHTML = '☰';
     });
 
     // Auto-close on selection
@@ -64,6 +70,7 @@ export function initializeSidebar() {
         if (isLink && !isVersionSelect) {
             setTimeout(() => {
                 sidebar.classList.remove('active');
+                sidebarToggle.innerHTML = '☰';
             }, 150); // Small delay for better UX
         }
     });
@@ -81,13 +88,11 @@ export function initializeSidebar() {
             }
         });
 
-        // Show contributors by default on mobile
-        if (window.innerWidth <= 768) {
-            contributorsContent.classList.remove('collapsed');
-            const icon = contributorsToggle.querySelector('.toggle-icon');
-            if (icon) {
-                icon.textContent = '▲';
-            }
+        // Keep contributors collapsed by default
+        contributorsContent.classList.add('collapsed');
+        const icon = contributorsToggle.querySelector('.toggle-icon');
+        if (icon) {
+            icon.textContent = '▼';
         }
     }
 }
