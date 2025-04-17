@@ -1,52 +1,103 @@
-# HyperBEAM Apocryphal
+# hyperBEAM Apocryphal
 
-This repository contains an apocryphal documentation website for the HyperBEAM system, a modular system designed for distributed applications.
+A public good initiative by several teams from the Arweave and AO ecosystem. This project provides a documentation viewer and blog system for hyperBEAM-related content.
 
-## Technology Stack
+## Project Overview
 
-- **Framework**: Next.js
-- **Styling**: Tailwind CSS
-- **Content Format**: JSON and JSX
+The project consists of:
+- Documentation viewer with version control
+- Blog system with RSS feed integration
+- Markdown rendering with syntax highlighting
+- File tree navigation
+- Mobile-responsive design
 
-## Key Features
+## Tech Stack
 
-- **Interactive Terminal**: Simulated terminal experience for command demonstrations
-- **Dynamic Content**: Data-driven pages using JSON content models
-- **Responsive Design**: Fully responsive interface optimized for all devices
-- **Comprehensive Documentation**: Detailed explanations of all HyperBEAM subsystems
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 16.8.0 or later
-- npm or yarn
-
-### Installation
-
-1. Clone the repository
-2. Install dependencies
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-### Development
-
-Run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+- Frontend: HTML, CSS, JavaScript
+- Build Tools: Webpack
+- Markdown Processing: marked.js
+- Syntax Highlighting: highlight.js
+- RSS Feed Integration: Node.js serverless function
 
 ## Project Structure
 
-- `src/app/` - Next.js App Router pages
-- `src/components/` - Reusable UI components
-- `src/data/` - JSON data models for content
-- `public/` - Static assets
+```
+hb-apoc/
+├── api/                     # Serverless API functions
+│   └── rss.js              # RSS feed handler
+│
+├── content/                 # Documentation markdown files
+│   ├── latest/             # Latest version docs
+│   ├── v1.0.0/            # Version 1.0.0 docs
+│   └── v2.0.0/            # Version 2.0.0 docs
+│
+├── public/                 # Generated files
+│   └── versions/          # Generated JSON chunks
+│
+├── src/                   # Source code
+│   ├── css/              # Stylesheets
+│   ├── js/               # JavaScript modules
+│   └── index.html        # Main HTML template
+│
+└── scripts/              # Build scripts
+    └── buildDocs.js      # Documentation processor
+```
+
+## Development
+
+1. Install dependencies:
+```bash
+npm install
+```
+
+2. Start development server:
+```bash
+npm run dev
+```
+
+This will:
+- Process documentation files
+- Start webpack dev server
+- Enable hot reloading
+
+## Building for Production
+
+```bash
+npm run build
+```
+
+This command:
+- Processes documentation
+- Creates optimized bundles
+- Outputs to `/dist` directory
+
+## Deployment
+
+This project is configured for deployment on Vercel:
+
+1. Connect your GitHub repository to Vercel
+2. Vercel will automatically:
+   - Detect the project type
+   - Install dependencies
+   - Build the project
+   - Deploy to a production URL
+
+The project uses Vercel's serverless functions for the RSS feed API endpoint.
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Contributors
+
+- EntityC HQ
+- Decentland Labs
+- Apus Network

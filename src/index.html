@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hyperBEAM Apocryphal</title>
+    <!-- Load required libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/vs2015.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/erlang.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/mermaid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1><a href="/" style="text-decoration: none; color: inherit;">hyperBEAM Apocryphal_</a></h1>
+                <div class="header-subtitle">
+                    A public good initiative by several teams from the Arweave and AO ecosystem
+                </div>
+            </div>
+            <div class="select-wrapper">
+                <select id="version-selector" class="version-select">
+                    <option value="">Loading...</option>
+                </select>
+                <div class="select-arrow">></div>
+            </div>
+        </div>
+        <div class="header-status">
+            Generated with AI assistance, curated by humans, errors to be expected | Not vetted/reviewed in any way or form by the core team
+        </div>
+    </header>
+
+    <div id="sidebar">
+        <div id="file-tree" class="file-tree"></div>
+        <div class="static-links">
+            <a href="/blog" data-page="blog">Blog</a>
+        </div>
+        <div class="contributors-section">
+            <button class="contributors-toggle">
+                <span class="toggle-text">Current Contributors</span>
+                <span class="toggle-icon">▼</span>
+            </button>
+            <div class="contributors-content collapsed">
+                <a href="https://x.com/EntityC_HQ" target="_blank" rel="noopener noreferrer" class="contributor">
+                    <img src="https://unavatar.io/twitter/EntityC_HQ" alt="EntityC HQ" class="contributor-logo">
+                    <span class="contributor-name">EntityC HQ</span>
+                </a>
+                <a href="https://x.com/decentlandlabs" target="_blank" rel="noopener noreferrer" class="contributor">
+                    <img src="https://unavatar.io/twitter/decentlandlabs" alt="Decentland Labs" class="contributor-logo">
+                    <span class="contributor-name">Decentland Labs</span>
+                </a>
+                <a href="https://x.com/apus_network" target="_blank" rel="noopener noreferrer" class="contributor">
+                    <img src="https://unavatar.io/twitter/apus_network" alt="Apus Network" class="contributor-logo">
+                    <span class="contributor-name">Apus Network</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <button id="sidebar-toggle">☰</button>
+
+    <div id="main">
+        <div id="loading">
+            <div class="spinner"></div>
+            <p>Loading documentation...</p>
+        </div>
+        <div id="viewer" style="display: none;">
+            <div id="content">
+                <div class="terminal">
+                    <div class="terminal-line">> initialising... hyperBEAM Apocryphal v1.0</div>
+                    <div class="terminal-line">> extracting collective knowledge from the hyperBEAM repo</div>
+                    <div class="terminal-line">> no centralised gospels detected. code remains god.</div>
+                    <div class="terminal-line">> invite: critique, evolve, experiment.</div>
+                    <div class="terminal-line">> disclaimer: no answers found. only paths to discovery.</div>
+                    <div class="terminal-line terminal-cursor">> awaiting input... let's eat glass together.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog page template -->
+    <template id="blog-template">
+        <div id="blog-content">
+            <div id="blog-posts">
+                <div class="spinner"></div>
+                <p>Loading blog posts...</p>
+            </div>
+            <nav class="pagination">
+                <button class="prev-page" disabled>Previous</button>
+                <button class="next-page" disabled>Next</button>
+            </nav>
+            <div class="feed-section">
+                <button class="feed-toggle">
+                    <span class="toggle-text">Show RSS Feeds</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="feed-content collapsed">
+                    <div class="feed-controls">
+                        <div class="feed-selector">
+                            <select id="feed-filter">
+                                <option value="">All Feeds</option>
+                            </select>
+                            <div class="select-arrow">></div>
+                        </div>
+                        <div class="feed-search">
+                            <input type="text" id="feed-search" placeholder="Search feeds..." />
+                            <div class="search-icon">🔍</div>
+                        </div>
+                    </div>
+                    <div class="feed-info">
+                        <div class="feed-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <template id="blog-post-template">
+            <article class="blog-post">
+                <div class="post-meta">
+                    <span class="post-date"></span>
+                    <span class="post-author"></span>
+                </div>
+                <h2 class="post-title">
+                    <a href="" target="_blank" rel="noopener"></a>
+                </h2>
+                <div class="post-description"></div>
+            </article>
+        </template>
+    </template>
+</body>
+</html>
