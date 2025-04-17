@@ -3,6 +3,7 @@ import '../css/blog.css';
 import { initializeFileTree, updateActiveFile } from './modules/fileTree';
 import { initVersionSelector, updateVersionInfo } from './modules/versionSelector';
 import { loadBlogPosts } from './modules/blog';
+import { initializeSidebar } from './modules/sidebar';
 import { loadVersion, loadVersions, flattenFileStructure } from './modules/docLoader';
 
 // Initialize marked with options and syntax highlighting
@@ -259,14 +260,8 @@ async function init() {
     }
 }
 
-// Add mobile sidebar toggle functionality
-const sidebarToggle = document.getElementById('sidebar-toggle');
-const sidebar = document.getElementById('sidebar');
-
-sidebarToggle.addEventListener('click', () => {
-    sidebar.classList.toggle('active');
-    sidebarToggle.textContent = sidebar.classList.contains('active') ? '×' : '☰';
-});
+// Initialize sidebar functionality
+initializeSidebar();
 
 // Add contributors toggle functionality
 document.addEventListener('DOMContentLoaded', () => {

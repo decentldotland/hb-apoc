@@ -57,13 +57,70 @@ body {
 
 @media (max-width: 768px) {
     :root {
-        --header-height: 70px;
+        --header-height: 60px;
     }
 
     body {
         flex-direction: column;
         font-size: 14px;
         line-height: 1.4;
+    }
+
+    /* Mobile header layout */
+    .main-header {
+        background: var(--bg-color);
+        height: var(--header-height);
+        border-bottom: 1px solid #333;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        padding: 8px 12px;
+        position: relative;
+    }
+
+    .header-left {
+        flex: 1;
+        z-index: 2;
+    }
+
+    .main-header h1 {
+        font-size: 1rem;
+        line-height: 1.2;
+        margin: 0;
+        color: var(--terminal-green);
+        display: block;
+    }
+
+    .header-subtitle {
+        font-size: 0.65rem;
+        line-height: 1.2;
+        opacity: 0.7;
+        margin-top: 2px;
+        display: block;
+    }
+
+    .header-status {
+        font-size: 0.6rem;
+        padding: 2px 8px;
+        text-align: center;
+        white-space: normal;
+        line-height: 1.3;
+        position: absolute;
+        bottom: -18px;
+        left: 0;
+        right: 0;
+        background: #252526;
+        border-top: 1px solid #333;
+        z-index: 1;
     }
 
     /* Improve heading readability */
@@ -83,6 +140,7 @@ body {
         word-break: break-word;
     }
 
+    /* Improved sidebar */
     #sidebar {
         position: fixed;
         left: -100%;
@@ -92,6 +150,8 @@ body {
         z-index: 100;
         transition: left 0.3s ease;
         padding-top: var(--header-height);
+        background: rgba(30, 30, 30, 0.98);
+        backdrop-filter: blur(10px);
     }
 
     #sidebar.active {
@@ -103,11 +163,64 @@ body {
         align-items: center;
         justify-content: center;
         z-index: 1001;
-        bottom: 10px;
+        bottom: 15px;
+        right: 15px;
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+        opacity: 0.9;
+    }
+
+    /* Fix contributors section */
+    .contributors-section {
+        padding: 15px;
+        margin-top: auto;
+        border-top: 1px solid #333;
+        background: var(--bg-color);
+        position: sticky;
+        bottom: 0;
+        z-index: 10;
+    }
+
+    .contributors-content {
+        margin-top: 0.8rem;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    .contributors-content.collapsed {
+        display: none;
+    }
+
+    .contributors-toggle {
+        width: 100%;
+        padding: 8px;
+        background: #252526;
+        border: 1px solid #333;
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+
+    /* Close button style */
+    .sidebar-close {
+        position: absolute;
+        top: 10px;
         right: 10px;
-        width: 45px;
-        height: 45px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--terminal-green);
+        color: var(--bg-color);
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-size: 18px;
+        cursor: pointer;
+        z-index: 1002;
     }
 
     #main {
