@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/node"
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
@@ -12,20 +12,16 @@
       "dest": "/api/$1"
     },
     {
-      "src": "/dist/(.*)",
-      "dest": "/dist/$1"
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "/dist/index.html"
+      "dest": "/index.html"
     }
   ],
   "build": {
     "env": {
       "NODE_ENV": "production"
     }
-  },
-  "env": {
-    "PYTHON_VERSION": "3.9"
   }
 }
