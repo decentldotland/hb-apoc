@@ -16,12 +16,13 @@
 <body>
     <header class="main-header">
         <div class="header-content">
-            <div class="header-left">
+            <nav class="main-nav">
+                <button id="nav-menu-toggle">☰</button>
                 <h1><a href="/" style="text-decoration: none; color: inherit;">hyperBEAM Apocryphal_</a></h1>
                 <div class="header-subtitle">
                     A public good initiative by several teams from the Arweave and AO ecosystem
                 </div>
-            </div>
+            </nav>
             <div class="select-wrapper">
                 <select id="version-selector" class="version-select">
                     <option value="">Loading...</option>
@@ -30,7 +31,7 @@
             </div>
         </div>
         <div class="header-status">
-            Generated with AI assistance, curated by humans, errors to be expected | Not vetted/reviewed in any way or form by the core team
+            generated with AI, curated by humans
         </div>
     </header>
 
@@ -60,8 +61,6 @@
             </button>
         </div>
     </div>
-    <button id="sidebar-toggle">☰</button>
-
     <div id="main">
         <div id="loading">
             <div class="spinner"></div>

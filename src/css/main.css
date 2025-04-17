@@ -380,7 +380,7 @@ blockquote {
     width: 100%;
     background: #333;
     font-size: 0.625rem;
-    padding: 0.125rem 0.5rem;
+    padding-top: 1em;
     text-align: center;
     border-top: 1px solid #444;
     color: #ddd;
