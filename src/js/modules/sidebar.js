@@ -1,17 +1,23 @@
 // Handle sidebar functionality
 export function initializeSidebar() {
     const sidebar = document.getElementById('sidebar');
-    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const menuToggle = document.getElementById('nav-menu-toggle');
+    
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'sidebar-overlay';
+    document.body.appendChild(overlay);
     
     // Create close button
     const closeButton = document.createElement('button');
     closeButton.className = 'sidebar-close';
     closeButton.innerHTML = '×';
-    sidebar.appendChild(closeButton);
+   // sidebar.appendChild(closeButton);
 
     // Ensure sidebar starts closed
     sidebar.classList.remove('active');
-    sidebarToggle.innerHTML = '☰';
+    overlay.classList.remove('active');
+    menuToggle.innerHTML = '☰';
 
     // Handle version selector on mobile
     if (window.innerWidth <= 768) {
@@ -74,17 +80,36 @@ export function initializeSidebar() {
         }
     }
 
+    // Function to open sidebar
+    function openSidebar() {
+        sidebar.classList.add('active');
+        overlay.classList.add('active');
+        menuToggle.innerHTML = '✕';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    // Function to close sidebar
+    function closeSidebar() {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        menuToggle.innerHTML = '☰';
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
     // Toggle sidebar
-    sidebarToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('active');
-        sidebarToggle.innerHTML = sidebar.classList.contains('active') ? '☰' : '☰';
+    menuToggle.addEventListener('click', () => {
+        if (sidebar.classList.contains('active')) {
+            closeSidebar();
+        } else {
+            openSidebar();
+        }
     });
 
-    // Close sidebar
-    closeButton.addEventListener('click', () => {
-        sidebar.classList.remove('active');
-        sidebarToggle.innerHTML = '☰';
-    });
+    // Close sidebar when overlay is clicked
+    overlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar when close button is clicked
+    closeButton.addEventListener('click', closeSidebar);
 
     // Auto-close on selection
     sidebar.addEventListener('click', (e) => {
@@ -99,8 +124,7 @@ export function initializeSidebar() {
         // Don't close if clicking version selector
         if (isLink && !isVersionSelect) {
             setTimeout(() => {
-                sidebar.classList.remove('active');
-                sidebarToggle.innerHTML = '☰';
+                closeSidebar();
             }, 150); // Small delay for better UX
         }
     });

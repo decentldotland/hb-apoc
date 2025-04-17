@@ -1,13 +1,15 @@
 /* Force mobile styles */
 @media screen and (max-width: 768px) {
     :root {
-        --header-height: 60px;
+        --header-height: 84px; /* Increased to accommodate status bar */
+        --status-height: 24px;
     }
 
     body {
         flex-direction: column;
         font-size: 14px;
         line-height: 1.4;
+        padding-top: var(--header-height); /* Add padding for fixed header */
     }
 
     /* Override desktop styles */
@@ -17,13 +19,33 @@
         line-height: 1.4 !important;
     }
 
+    /* Status bar at very top */
+    .header-status {
+        font-size: 0.7rem !important;
+        padding: 4px 8px !important;
+        text-align: center !important;
+        background: #252526 !important;
+        border-bottom: 1px solid #333 !important;
+        color: var(--terminal-output) !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1000 !important;
+        line-height: 1.3 !important;
+        height: var(--status-height) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
     /* Clean mobile header */
     .main-header {
-        height: var(--header-height) !important;
+        height: calc(var(--header-height) - var(--status-height)) !important;
         background: var(--bg-color) !important;
         border-bottom: 1px solid #333 !important;
         position: fixed !important;
-        top: 0 !important;
+        top: var(--status-height) !important;
         left: 0 !important;
         right: 0 !important;
         z-index: 1000 !important;
@@ -34,18 +56,40 @@
     .header-content {
         display: flex !important;
         align-items: center !important;
-        justify-content: flex-start !important;
+        justify-content: space-between !important;
         padding: 0 15px !important;
         position: relative !important;
         background: transparent !important;
-        height: calc(100% - 24px) !important;
+        height: 100% !important;
     }
 
-    .header-left {
-        text-align: left !important;
-        flex: none !important;
-        max-width: none !important;
-        padding-top: 8px !important;
+    /* Main navigation */
+    .main-nav {
+        display: flex !important;
+        align-items: center !important;
+        gap: 15px !important;
+        flex: 1 !important;
+    }
+
+    #nav-menu-toggle {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 18px !important;
+        background: transparent !important;
+        color: var(--terminal-green) !important;
+        border: none !important;
+        cursor: pointer !important;
+        transition: transform 0.2s ease !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        flex-shrink: 0 !important;
+    }
+
+    #nav-menu-toggle:active {
+        transform: scale(0.95) !important;
     }
 
     .main-header h1 {
@@ -64,24 +108,23 @@
         display: none !important;
     }
 
-    /* Clean status bar */
-    .header-status {
-        font-size: 0.7rem !important;
-        padding: 4px 8px !important;
-        text-align: center !important;
-        background: #252526 !important;
-        border-top: 1px solid #333 !important;
-        color: var(--terminal-output) !important;
-        position: absolute !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        z-index: 1 !important;
-        line-height: 1.3 !important;
-        height: 24px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+    /* Mobile sidebar overlay */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+        opacity: 1;
     }
 
     /* Mobile sidebar */
@@ -89,39 +132,20 @@
         position: fixed !important;
         left: -100% !important;
         top: 0 !important;
-        width: 100% !important;
+        width: 85% !important;
         height: 100vh !important;
         z-index: 1000 !important;
         transition: left 0.3s ease !important;
-        padding-top: calc(var(--header-height) + 24px) !important;
+        padding-top: var(--header-height) !important;
         background: var(--bg-color) !important;
         display: flex !important;
         flex-direction: column !important;
         overflow-y: auto !important;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2) !important;
     }
 
     #sidebar.active {
         left: 0 !important;
-    }
-
-    /* Sidebar toggle button */
-    #sidebar-toggle {
-        position: fixed !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        z-index: 1001 !important;
-        bottom: 15px !important;
-        right: 15px !important;
-        width: 42px !important;
-        height: 42px !important;
-        font-size: 18px !important;
-        background: var(--terminal-green) !important;
-        color: var(--bg-color) !important;
-        border-radius: 50% !important;
-        border: none !important;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
-        cursor: pointer !important;
     }
 
     /* Version selector in sidebar */
@@ -155,7 +179,6 @@
         color: var(--text-color) !important;
         background: var(--bg-color) !important;
     }
-
 
     /* Mobile file tree */
     .file-tree {
@@ -274,7 +297,6 @@
         margin-left: 0;
         width: 100%;
         padding: 5px;
-        margin-top: calc(var(--header-height) + 24px);
     }
 
     #content {
@@ -285,20 +307,25 @@
 
     /* Close button */
     .sidebar-close {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: var(--terminal-green);
-        color: var(--bg-color);
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-        cursor: pointer;
-        z-index: 1002;
+        position: absolute !important;
+        top: calc(var(--header-height) + 8px) !important;
+        right: 15px !important;
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 50% !important;
+        background: var(--terminal-green) !important;
+        color: var(--bg-color) !important;
+        border: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 20px !important;
+        cursor: pointer !important;
+        z-index: 1002 !important;
+        transition: transform 0.2s ease !important;
+    }
+
+    .sidebar-close:active {
+        transform: scale(0.95) !important;
     }
 }

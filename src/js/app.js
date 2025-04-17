@@ -130,7 +130,7 @@ async function loadVersionContent(version) {
                     <div class="terminal">
                         <div class="terminal-line">> initialising... hyperBEAM Apocryphal v1.0</div>
                         <div class="terminal-line">> extracting collective knowledge from the hyperBEAM repo</div>
-                        <div class="terminal-line">> no centralised gospels detected. code remains god.</div>
+                        <div class="terminal-line">> no centralised gospels detected. <strong>code remains god</strong>.</div>
                         <div class="terminal-line">> invite: critique, evolve, experiment.</div>
                         <div class="terminal-line">> disclaimer: no answers found. only paths to discovery.</div>
                         <div class="terminal-line terminal-cursor">> awaiting input... let's eat glass together.</div>
