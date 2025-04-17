@@ -1,5 +1,6 @@
 import '../css/main.css';
 import '../css/blog.css';
+import '../css/mobile.css';
 import { initializeFileTree, updateActiveFile } from './modules/fileTree';
 import { initVersionSelector, updateVersionInfo } from './modules/versionSelector';
 import { loadBlogPosts } from './modules/blog';
