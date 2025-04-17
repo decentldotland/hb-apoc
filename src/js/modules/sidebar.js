@@ -17,18 +17,37 @@ export function initializeSidebar() {
     if (window.innerWidth <= 768) {
         const headerVersionWrapper = document.querySelector('.header-content .select-wrapper');
         if (headerVersionWrapper) {
-            // Clone version selector for sidebar
-            const sidebarVersionWrapper = headerVersionWrapper.cloneNode(true);
-            sidebarVersionWrapper.classList.add('mobile-version-selector');
+            // Create new version selector for sidebar
+            const sidebarVersionWrapper = document.createElement('div');
+            sidebarVersionWrapper.className = 'select-wrapper mobile-version-selector';
+            
+            const sidebarSelect = document.createElement('select');
+            sidebarSelect.className = 'version-select';
+            sidebarSelect.id = 'mobile-version-selector';
+            
+            // Add arrow
+            const selectArrow = document.createElement('div');
+            selectArrow.className = 'select-arrow';
+            selectArrow.textContent = '>';
+            
+            sidebarVersionWrapper.appendChild(sidebarSelect);
+            sidebarVersionWrapper.appendChild(selectArrow);
             
             // Insert at the top of sidebar
             sidebar.insertBefore(sidebarVersionWrapper, sidebar.firstChild);
             
-            // Sync version selectors
-            const sidebarSelect = sidebarVersionWrapper.querySelector('select');
+            // Initialize version selector
             const headerSelect = headerVersionWrapper.querySelector('select');
-            
-            if (sidebarSelect && headerSelect) {
+            if (headerSelect) {
+                // Copy options from header selector
+                Array.from(headerSelect.options).forEach(opt => {
+                    const option = document.createElement('option');
+                    option.value = opt.value;
+                    option.text = opt.text;
+                    option.selected = opt.selected;
+                    sidebarSelect.appendChild(option);
+                });
+                
                 // Keep them in sync
                 sidebarSelect.value = headerSelect.value;
                 
@@ -40,6 +59,17 @@ export function initializeSidebar() {
                 headerSelect.addEventListener('change', (e) => {
                     sidebarSelect.value = e.target.value;
                 });
+                
+                // Create version info container
+                const versionInfo = document.createElement('div');
+                versionInfo.className = 'version-info';
+                sidebarVersionWrapper.appendChild(versionInfo);
+                
+                // Copy version info if it exists
+                const headerVersionInfo = headerVersionWrapper.querySelector('.version-info');
+                if (headerVersionInfo) {
+                    versionInfo.textContent = headerVersionInfo.textContent;
+                }
             }
         }
     }
