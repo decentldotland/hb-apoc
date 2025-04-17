@@ -204,30 +204,25 @@
         font-size: 0.9rem !important;
         cursor: pointer !important;
         user-select: none !important;
+        margin-bottom: 0 !important;
     }
 
     .contributors-content {
         margin-top: 10px !important;
-        max-height: none !important;
-        overflow: visible !important;
         background: var(--bg-color) !important;
         border-radius: 4px !important;
         border: 1px solid #444 !important;
         transition: all 0.3s ease !important;
-        opacity: 1 !important;
         display: block !important;
-        height: auto !important;
-        transform-origin: top !important;
-        transform: scaleY(1) !important;
+        overflow: hidden !important;
+        max-height: 500px !important;
     }
 
     .contributors-content.collapsed {
-        margin: 0 !important;
-        height: 0 !important;
-        opacity: 0 !important;
+        max-height: 0 !important;
+        margin-top: 0 !important;
         border: none !important;
-        transform: scaleY(0) !important;
-        pointer-events: none !important;
+        opacity: 0 !important;
     }
 
     .contributor {
@@ -263,9 +258,14 @@
     .contributors-toggle .toggle-icon {
         font-size: 0.8rem !important;
         transition: transform 0.3s ease !important;
+        display: inline-block !important;
     }
 
-    .contributors-content:not(.collapsed) + .contributors-toggle .toggle-icon {
+    .contributors-toggle .toggle-text {
+        color: var(--text-color) !important;
+    }
+
+    .contributors-content:not(.collapsed) ~ .contributors-toggle .toggle-icon {
         transform: rotate(180deg) !important;
     }
 
