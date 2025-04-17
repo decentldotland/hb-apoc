@@ -10,7 +10,7 @@
         line-height: 1.4;
     }
 
-    /* Mobile header */
+    /* Mobile header - simplified */
     .main-header {
         height: var(--header-height);
         background: var(--bg-color);
@@ -20,19 +20,23 @@
         left: 0;
         right: 0;
         z-index: 1000;
+        display: flex;
+        flex-direction: column;
     }
 
     .header-content {
-        height: 100%;
+        flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 0;
         position: relative;
+        background: transparent;
     }
 
     .header-left {
         text-align: center;
+        flex: none;
     }
 
     .main-header h1 {
@@ -41,12 +45,13 @@
         margin: 0;
         color: var(--terminal-green);
         white-space: normal;
+        text-align: center;
     }
 
-    /* Hide elements on mobile */
+    /* Hide desktop elements */
     .header-content .header-subtitle,
     .header-content .select-wrapper {
-        display: none;
+        display: none !important;
     }
 
     /* Clean status bar */
@@ -61,6 +66,7 @@
         background: #252526;
         border-top: 1px solid #333;
         color: var(--terminal-output);
+        z-index: 1;
     }
 
     /* Mobile sidebar with version selector */
