@@ -264,17 +264,5 @@ async function init() {
 // Initialize sidebar functionality
 initializeSidebar();
 
-// Add contributors toggle functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const contributorsToggle = document.querySelector('.contributors-toggle');
-    const contributorsContent = document.querySelector('.contributors-content');
-    const toggleIcon = contributorsToggle.querySelector('.toggle-icon');
-
-    contributorsToggle.addEventListener('click', () => {
-        contributorsContent.classList.toggle('collapsed');
-        toggleIcon.textContent = contributorsContent.classList.contains('collapsed') ? '▼' : '▲';
-    });
-});
-
 // Start initialization
 init();
