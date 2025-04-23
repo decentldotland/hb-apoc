@@ -67,9 +67,9 @@ export function initializeSidebar() {
                 });
                 
                 // Create version info container
-                const versionInfo = document.createElement('div');
-                versionInfo.className = 'version-info';
-                sidebarVersionWrapper.appendChild(versionInfo);
+                //const versionInfo = document.createElement('div');
+                //versionInfo.className = 'version-info';
+                //sidebarVersionWrapper.appendChild(versionInfo);
                 
                 // Copy version info if it exists
                 const headerVersionInfo = headerVersionWrapper.querySelector('.version-info');
@@ -136,10 +136,10 @@ export function initializeSidebar() {
         
         if (!contributorsToggle || !contributorsContent) return;
 
-        // Start collapsed
-        contributorsContent.classList.add('collapsed');
+        // Start expanded
+        contributorsContent.classList.remove('collapsed');
         const icon = contributorsToggle.querySelector('.toggle-icon');
-        if (icon) icon.textContent = '▼';
+        if (icon) icon.textContent = '▲';
 
         // Handle toggle click
         contributorsToggle.addEventListener('click', (e) => {

@@ -1,8 +1,9 @@
 /* Force mobile styles */
 @media screen and (max-width: 768px) {
     :root {
-        --header-height: 84px; /* Increased to accommodate status bar */
         --status-height: 24px;
+        --main-header-height: 60px;
+        --header-height: calc(var(--status-height) + var(--main-header-height));
     }
 
     body {
@@ -41,7 +42,7 @@
 
     /* Clean mobile header */
     .main-header {
-        height: calc(var(--header-height) - var(--status-height)) !important;
+        height: var(--main-header-height) !important;
         background: var(--bg-color) !important;
         border-bottom: 1px solid #333 !important;
         position: fixed !important;
@@ -131,17 +132,17 @@
     #sidebar {
         position: fixed !important;
         left: -100% !important;
-        top: 0 !important;
+        top: calc(var(--status-height) + var(--main-header-height)) !important;
         width: 85% !important;
-        height: 100vh !important;
-        z-index: 1000 !important;
+        height: calc(100vh - var(--status-height) - var(--main-header-height)) !important;
+        z-index: 1001 !important;
         transition: left 0.3s ease !important;
-        padding-top: var(--header-height) !important;
         background: var(--bg-color) !important;
         display: flex !important;
         flex-direction: column !important;
         overflow-y: auto !important;
         box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2) !important;
+        padding-bottom: 0 !important;
     }
 
     #sidebar.active {
@@ -182,41 +183,45 @@
 
     /* Mobile file tree */
     .file-tree {
-        flex: 1;
-        overflow-y: auto;
-        padding: 15px;
-        border-top: none;
+        flex: 1 1 0 !important;
+        overflow-y: auto !important;
+        padding: 15px !important;
+        border-top: none !important;
+        min-height: 100px !important;
     }
 
     /* Mobile static links */
     .static-links {
-        padding: 15px;
-        background: #252526;
-        border-top: 1px solid #333;
+        padding: 8px !important;
+        background: #252526 !important;
+        border-top: 1px solid #333 !important;
+        flex-shrink: 0 !important;
     }
 
     .static-links a {
-        padding: 10px 15px;
-        margin: 2px 0;
-        border-radius: 4px;
-        font-size: 0.9rem;
-        display: block;
-        color: var(--text-color);
-        text-decoration: none;
+        padding: 6px 10px !important;
+        margin: 0 !important;
+        border-radius: 4px !important;
+        font-size: 0.9rem !important;
+        display: block !important;
+        color: var(--text-color) !important;
+        text-decoration: none !important;
     }
 
     /* Enhanced contributors section */
     .contributors-section {
-        padding: 15px !important;
+        padding: 8px !important;
         background: #252526 !important;
         border-top: 1px solid #333 !important;
-        margin-top: auto !important;
         position: relative !important;
+        min-height: fit-content !important;
+        flex-shrink: 0 !important;
+        margin-top: 0 !important;
     }
 
     .contributors-toggle {
         width: 100% !important;
-        padding: 10px 15px !important;
+        padding: 6px 10px !important;
         background: var(--bg-color) !important;
         border: 1px solid #444 !important;
         border-radius: 4px !important;
@@ -238,22 +243,19 @@
         transition: all 0.3s ease !important;
         display: block !important;
         overflow: hidden !important;
-        max-height: 500px !important;
+        max-height: none !important;
     }
 
     .contributors-content.collapsed {
-        max-height: 0 !important;
-        margin-top: 0 !important;
-        border: none !important;
-        opacity: 0 !important;
+        display: none !important;
     }
 
     .contributor {
-        padding: 12px 15px !important;
+        padding: 6px 10px !important;
         border-bottom: 1px solid #333 !important;
         display: flex !important;
         align-items: center !important;
-        gap: 12px !important;
+        gap: 8px !important;
         text-decoration: none !important;
         color: var(--text-color) !important;
         background: var(--bg-color) !important;
@@ -264,8 +266,8 @@
     }
 
     .contributor-logo {
-        width: 28px !important;
-        height: 28px !important;
+        width: 24px !important;
+        height: 24px !important;
         border-radius: 50% !important;
         border: 2px solid var(--terminal-green) !important;
         flex-shrink: 0 !important;
@@ -308,7 +310,7 @@
     /* Close button */
     .sidebar-close {
         position: absolute !important;
-        top: calc(var(--header-height) + 8px) !important;
+        top: 8px !important;
         right: 15px !important;
         width: 32px !important;
         height: 32px !important;
