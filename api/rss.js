@@ -15,6 +15,11 @@ const FEEDS = [
     url: 'https://odysee.com/$/rss/@EntityC:8',
     name: 'EntityC',
     description: 'Community updates and tutorials'
+  },
+  {
+    url: 'https://odysee.com/$/rss/@apus_network:2',
+    name: 'Apus Network',
+    description: 'Community updates and tutorials'
   }
 ];
 
